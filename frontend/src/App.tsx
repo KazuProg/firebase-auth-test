@@ -8,17 +8,27 @@ import {
 } from "./firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from "firebase/auth";
+import MessageComponent from "./components/MessageComponent"; // MessageComponent をインポート
 
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [authToken, setAuthToken] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
+      // ログイン状態が変更されたときにトークンをローカルストレージに保存 (例)
+      if (user) {
+        user.getIdToken().then((token) => {
+          setAuthToken(token);
+        });
+      } else {
+        setAuthToken(null);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -107,6 +117,8 @@ function App() {
 
       {currentUser ? (
         <div>
+          <h2>メッセージボード</h2>
+          {authToken ? <MessageComponent authToken={authToken} /> : ""}
           <h2>ログアウト</h2>
           <button onClick={signOut}>ログアウト</button>
         </div>
