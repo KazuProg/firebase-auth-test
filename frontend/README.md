@@ -1,16 +1,15 @@
 # Firebase Auth Test (frontend)
 
-`src/firebase.ts`の`firebaseConfig`変数を適切な値に書き換えてください
+[FirebaseConsole](https://console.firebase.google.com/u/0/?hl=ja) の`プロジェクトの設定`->`全般`->`マイアプリ`に記載されている各変数の値を`.env`に保存
 
-```ts
-// Firebaseコンソールからコピーした設定オブジェクト
-const firebaseConfig: FirebaseOptions = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID",
-};
+`.env`
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
 ```
